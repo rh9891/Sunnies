@@ -1,7 +1,11 @@
 import Main from "@/components/Main";
 import Login from "@/components/Login";
 
-export default function Dashboard() {
+type DashboardProps = {
+    className?: string
+}
+
+export default function Dashboard({}: DashboardProps) {
     const isAuthenticated: boolean = false
 
     let children = (<Login />)
