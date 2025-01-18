@@ -1,14 +1,13 @@
 import {ReactNode} from "react";
 
 type HeroProps = {
-    children: ReactNode
     className?: string
 }
 
-export default function Hero({children}: HeroProps) {
+export default function Hero() {
     return (
         <main>
-            {children}
+            Hello World
         </main>
     )
 }

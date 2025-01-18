@@ -1,13 +1,13 @@
 import {ReactNode} from "react";
 
 type MainProps = {
-    children: ReactNode
+    children?: ReactNode
     className?: string
 }
 
 export default function Main({children}: MainProps) {
     return (
-        <main>
+        <main className='flex-1'>
             {children}
         </main>
     )
