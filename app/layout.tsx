@@ -1,22 +1,8 @@
 import {ReactNode} from "react";
 import type { Metadata } from "next";
-import {Atma, Barriecito, Geist, Geist_Mono, Nunito_Sans, Rubik_Dirt} from "next/font/google";
+
+import {atmaSans, nunitoSans} from "@/fonts";
 import "./globals.css";
-
-const nunitoSans = Nunito_Sans({
-    variable: "--font-nunito-sans",
-    subsets: ["latin"], weight: "400",
-});
-
-const barriecitoSans = Rubik_Dirt({
-    variable: "--font-rubik-dirt-sans",
-    subsets: ["latin"], weight: "400",
-});
-
-const atmaSans = Atma({
-    variable: "--font-atma-sans",
-    subsets: ["latin"], weight: "400",
-});
 
 export const metadata: Metadata = {
   title: "Sunnies",

@@ -1,10 +1,7 @@
 import {ReactNode} from "react";
-import {Atma, Barrio, Funnel_Display, Kirang_Haerang, Modak, Rubik_Dirt, Shizuru} from "next/font/google";
 
-const atmaSans = Atma({
-    variable: "--font-atma-sans",
-    subsets: ["latin"], weight: "400",
-});
+import {atmaSans} from "@/fonts";
+import Button from "@/components/Button";
 
 type HeroProps = {
     children?: ReactNode
@@ -14,8 +11,10 @@ type HeroProps = {
 export default function Hero({}: HeroProps) {
     return (
         <div className='py-4 sm:py-10 flex flex-col gap-4 sm:gap-8'>
-            <h1 className={'text-5xl sm:text-text-6xl md:text-7xl text-center ' + atmaSans.className}>Track your mood and symptoms with <span className='textGradient'>Sunnies</span>. Designed to <span className='textGradient'>brighten</span> your days.</h1>
-            <p className='text-lg sm:text-xl md:text-2xl text-center'>Create insights and <span className='font-medium'>stay positive every day</span>.</p>
+            <h1 className={'text-5xl sm:text-text-6xl md:text-7xl text-center ' + atmaSans.className}>Reflect, grow, and embrace <span className='textGradient'>brighter</span> days with <span className='textGradient'>Sunnies</span>.</h1>
+            <p className='text-lg sm:text-xl md:text-2xl text-center w-full mx-auto max-w-[600px]'>Track your journey, share insights, and <span className='font-semibold'>stay positive every day</span>.
+            </p>
+            <div className='grid grid-cols-2 gap-4'><Button text="Sign Up" /><Button text="Log In" /></div>
         </div>
     )
 }
