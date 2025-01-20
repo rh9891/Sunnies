@@ -1,19 +1,14 @@
+import {ReactNode} from "react";
+
 import Main from "@/components/Main";
-import Login from "@/components/Login";
 
 type DashboardProps = {
     className?: string
+    children?: ReactNode
 }
 
-export default function Dashboard({}: DashboardProps) {
-    const isAuthenticated: boolean = false
-
-    let children = (<Login />)
-
-    if (isAuthenticated) {
-        children = (<Dashboard />)
-    }
+export default function Dashboard({children, className}: DashboardProps) {
     return (
-        <Main>{children}</Main>
+        <Main className={className}>{children}</Main>
     )
 }

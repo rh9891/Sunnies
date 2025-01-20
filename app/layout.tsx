@@ -16,8 +16,11 @@ export default function RootLayout({
     children: ReactNode;
 }>) {
     const header = (<header className='p-4 sm:p-8 flex items-center justify-between gap-4'><h1
-        className={'text-base sm:text-lg text-gradient ' + atmaSans.className}>Sunnies</h1></header>)
-    const footer = (<footer className='p-4 sm:p-8'>Footer</footer>)
+        className={'text-base sm:text-lg text-gradient ' + atmaSans.className}>Sunnies</h1>
+        <div className="flex items-center justify-betwee">
+            Placeholder for statistics or text
+        </div>
+    </header>)
 
     return (
         <html lang="en">
