@@ -1,6 +1,6 @@
 import { Mood, Symptom } from "@/types";
 
-const symptoms: Record<string, Symptom> = {
+export const symptoms: Record<string, Symptom> = {
   "Abdominal Pain": {
     label: "Abdominal Pain",
     icon: "AbdominalPain",
@@ -38,21 +38,20 @@ const symptoms: Record<string, Symptom> = {
   Nausea: { label: "Nausea", icon: "Nausea", value: "nausea_15" },
   Pain: { label: "Pain", icon: "Pain", value: "pain_16" },
   PoorSleep: { label: "Poor Sleep", icon: "PoorSleep", value: "poorSleep_17" },
-  Rash: { label: "Rash", icon: "Rash", value: "rash_18" },
   "Shortness of Breath": {
     label: "Shortness of Breath",
     icon: "ShortnessOfBreath",
-    value: "shortnessOfBreath_19",
+    value: "shortnessOfBreath_18",
   },
   "Sore Throat": {
     label: "Sore Throat",
     icon: "SoreThroat",
-    value: "soreThroat_20",
+    value: "soreThroat_19",
   },
-  Sweating: { label: "Sweating", icon: "Sweating", value: "sweating_21" },
+  Sweating: { label: "Sweating", icon: "Sweating", value: "sweating_20" },
 };
 
-const moods: Record<string, Mood> = {
+export const moods: Record<string, Mood> = {
   Angry: { label: "Angry", icon: "Angry", value: "angry_01" },
   Scared: { label: "Scared", icon: "Scared", value: "scared_02" },
   Calm: { label: "Calm", icon: "Calm", value: "calm_03" },
