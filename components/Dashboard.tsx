@@ -1,12 +1,5 @@
-import { ReactNode } from "react";
-
 import { atmaSans, nunitoSans } from "@/fonts";
 import { symptoms } from "@/helpers";
-
-type DashboardProps = {
-  className?: string;
-  children?: ReactNode;
-};
 
 type Statuses = {
   numberOfDays: { label: string; value: number };
@@ -14,7 +7,7 @@ type Statuses = {
   date: { label: string; value: string };
 };
 
-export default function Dashboard({ children, className }: DashboardProps) {
+export default function Dashboard() {
   const statuses: Statuses = {
     numberOfDays: { label: "Number of Days", value: 14 },
     timeRemaining: { label: "Time Remaining", value: "13:14:26" },
@@ -23,7 +16,7 @@ export default function Dashboard({ children, className }: DashboardProps) {
 
   return (
     <div className="flex flex-col flex-1 gap-8 sm:gap-10 md:gap-16">
-      <div className="grid grid-cols-3 bg-yellow-50 text-yellow-400 rounded-lg">
+      <div className="grid grid-cols-3 border-2 border-black text-black p-4 gap-4 rounded-lg">
         {Object.keys(statuses).map((status, i) => {
           const statusKey = status as keyof Statuses;
 
@@ -37,7 +30,11 @@ export default function Dashboard({ children, className }: DashboardProps) {
               >
                 {statuses[statusKey].label}
               </p>
-              <p className={"text-base sm:text-lg " + nunitoSans.className}>
+              <p
+                className={
+                  "text-base sm:text-lg truncate " + nunitoSans.className
+                }
+              >
                 {statuses[statusKey].value}
               </p>
             </div>
@@ -57,7 +54,7 @@ export default function Dashboard({ children, className }: DashboardProps) {
         {Object.values(symptoms).map((symptom, i) => (
           <button
             key={i}
-            className="flex flex-col items-center justify-center bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition duration-200"
+            className="flex flex-col items-center justify-center p-4 rounded-md relative group cursor-pointer border-2 font-medium border-black text-black hover:bg-yellow-400"
           >
             <img
               src={`Symptoms/${symptom.icon}.png`}
