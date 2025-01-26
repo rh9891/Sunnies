@@ -1,5 +1,6 @@
 import { atmaSans, nunitoSans } from "@/fonts";
 import { symptoms } from "@/helpers";
+import Calendar from "@/components/Calendar";
 
 type Statuses = {
   numberOfDays: { label: string; value: number };
@@ -50,23 +51,29 @@ export default function Dashboard() {
         <span className={"text-gradient " + atmaSans.className}> feel </span>
         today?
       </h4>
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
         {Object.values(symptoms).map((symptom, i) => (
           <button
             key={i}
-            className="flex flex-col items-center justify-center p-4 rounded-md relative group cursor-pointer border-2 font-medium border-black text-black hover:bg-yellow-400"
+            className="flex flex-col gap-2 items-center justify-center p-4 rounded-2xl relative group cursor-pointer border-2 font-medium border-black text-black hover:bg-yellow-400 custom-effect"
           >
             <img
               src={`Symptoms/${symptom.icon}.png`}
               alt={symptom.label}
               className="w-16 h-16 object-cover mb-2"
             />
-            <p className={"text-center " + nunitoSans.className}>
+            <p
+              className={
+                "text-center text-xs sm:text-sm md:text-base " +
+                nunitoSans.className
+              }
+            >
               {symptom.label}
             </p>
           </button>
         ))}
       </div>
+      <Calendar />
     </div>
   );
 }
