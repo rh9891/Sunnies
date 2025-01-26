@@ -53,13 +53,17 @@ export const symptoms: Record<string, Symptom> = {
 
 export const moods: Record<string, Mood> = {
   Angry: { label: "Angry", icon: "Angry", value: "angry_01" },
-  Scared: { label: "Scared", icon: "Scared", value: "scared_02" },
-  Calm: { label: "Calm", icon: "Calm", value: "calm_03" },
+  Calm: { label: "Calm", icon: "Calm", value: "calm_02" },
+  Excited: { label: "Excited", icon: "Excited", value: "excited_03" },
+  Happy: { label: "Happy", icon: "Happy", value: "happy_04" },
+  Grateful: { label: "Grateful", icon: "Grateful", value: "grateful_05" },
+  Motivated: { label: "Motivated", icon: "Motivated", value: "motivated_06" },
+  Neutral: { label: "Neutral", icon: "Neutral", value: "neutral_07" },
   Overwhelmed: {
     label: "Overwhelmed",
     icon: "Overwhelmed",
-    value: "overwhelmed_04",
+    value: "overwhelmed_08",
   },
-  Happy: { label: "Happy", icon: "Happy", value: "happy_05" },
-  Sad: { label: "Sad", icon: "Sad", value: "sad_06" },
+  Sad: { label: "Sad", icon: "Sad", value: "sad_09" },
+  Scared: { label: "Scared", icon: "Scared", value: "scared_10" },
 };
