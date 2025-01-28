@@ -17,7 +17,7 @@ export default function Hero() {
       </h1>
       <p className="text-lg sm:text-xl md:text-2xl text-center w-full mx-auto max-w-[600px]">
         Track your journey, share insights, and
-        <span className="font-semibold">stay positive every day</span>.
+        <span className="font-semibold"> stay positive every day</span>.
       </p>
       <div className="grid grid-cols-2 gap-4 w-fit mx-auto">
         <Button variant="light" text="Sign Up" />
