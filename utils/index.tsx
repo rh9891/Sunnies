@@ -15,7 +15,7 @@ export const gradients = {
   ],
 };
 
-function generateSymptomData(day: number): Symptom[] {
+const generateSymptomData = (day: number): Symptom[] => {
   const symptomKeys = Object.keys(symptoms);
   const symptomCount = Math.floor(Math.random() * 4) + 1;
 
@@ -42,7 +42,7 @@ function generateSymptomData(day: number): Symptom[] {
   }
 
   return daySymptoms;
-}
+};
 
 const generate45DaysSymptoms = () => {
   const symptomsData = [];

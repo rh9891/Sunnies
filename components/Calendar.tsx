@@ -1,5 +1,3 @@
-// import {gradients} from "@/utils/gradients";
-
 const months = {
   January: "Jan",
   February: "Feb",
@@ -29,7 +27,7 @@ type CalendarProps = {
   demo: boolean;
 };
 
-export default function Calendar() {
+export default function Calendar({ demo }: CalendarProps) {
   const year = 2025;
   const month = "January";
   const monthNow = new Date(year, Object.keys(months).indexOf(month), 1);
@@ -57,12 +55,14 @@ export default function Calendar() {
                   : !(row === 0 && j < firstDayOfMonth);
               let isToday = dayIndex === now.getDate();
               let color;
+
               if (!dayDisplay) {
                 return <div key={j} className="bg-white" />;
               }
               return (
                 <div
                   key={j}
+                  style={{ background: color }}
                   className={
                     "text-xs sm:text-sm border border-solid p-2 flex items-center gap-2 justify-between rounded-lg " +
                     (isToday ? "bg-yellow-400" : "bg-yellow-300") +
