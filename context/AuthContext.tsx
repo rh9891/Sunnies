@@ -11,24 +11,37 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
+  User,
 } from "firebase/auth";
-import { doc } from "firebase/firestore";
+import { doc, getDoc } from "firebase/firestore";
 
-const AuthContext = createContext("");
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export function useAuth() {
-  return useContext(AuthContext);
+  const context = useContext(AuthContext);
+  if (!context) {
+    throw new Error("useAuth must be used within an AuthProvider");
+  }
+  return context;
 }
+
+type AuthContextType = {
+  currentUser: User | null;
+  userDataObject: Record<string, any>;
+  signup: (email: string, password: string) => Promise<any>;
+  login: (email: string, password: string) => Promise<any>;
+  logout: () => Promise<void>;
+  loading: boolean;
+};
 
 type AuthProviderProps = {
   children: ReactNode;
-  value: any;
 };
 
 export function AuthProvider({ children }: AuthProviderProps) {
-  const [currentUser, setCurrentUser] = useState(null);
-  const [userDataObject, setUserDataObject] = useState({});
-  const [loading, setLoading] = useState(true);
+  const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const [userDataObject, setUserDataObject] = useState<Record<string, any>>({});
+  const [loading, setLoading] = useState<boolean>(true);
 
   const signup = (email: string, password: string) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -37,45 +50,46 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const login = (email: string, password: string) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
-  const logout = () => {
+
+  const logout = async () => {
     setUserDataObject({});
     setCurrentUser(null);
-    return signOut(auth);
+    await signOut(auth);
   };
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged(auth, async (user) => {
+    return auth.onAuthStateChanged(async (user) => {
       try {
         setLoading(true);
         setCurrentUser(user);
-        if (!user) {
-          return;
-        }
+        if (!user) return;
+
         console.log("Fetching user data from firebase...");
         const docRef = doc(db, "users", user.uid);
-        const docSnap = await docRef.get(docRef);
+        const docSnap = await getDoc(docRef);
+
         let firebaseData = {};
         if (docSnap.exists()) {
           console.log("Found user data in firebase.");
           firebaseData = docSnap.data();
-          console.log(firebaseData);
         }
         setUserDataObject(firebaseData);
-      } catch (err: any) {
-        console.log(err.message);
+      } catch (err) {
+        console.error((err as Error).message);
       } finally {
         setLoading(false);
       }
     });
-    return unsubscribe;
   }, []);
 
-  const value = {
+  const value: AuthContextType = {
     currentUser,
     userDataObject,
     signup,
     logout,
     login,
+    loading,
   };
+
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
