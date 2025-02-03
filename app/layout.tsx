@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { atmaSans, nunitoSans } from "@/fonts";
 import Footer from "@/components/Footer";
+import { AuthProvider } from "@/context/AuthContext";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,16 +35,18 @@ export default function RootLayout({
 
   return (
     <html lang="en">
-      <body
-        className={
-          "w-full mx-auto text-sm sm:text-base min-h-screen flex flex-col text-slate-700 " +
-          `${nunitoSans.variable} ${nunitoSans.variable} antialiased`
-        }
-      >
-        {header}
-        {children}
-        <Footer />
-      </body>
+      <AuthProvider>
+        <body
+          className={
+            "w-full mx-auto text-sm sm:text-base min-h-screen flex flex-col text-slate-700 " +
+            `${nunitoSans.variable} ${nunitoSans.variable} antialiased`
+          }
+        >
+          {header}
+          {children}
+          <Footer />
+        </body>
+      </AuthProvider>
     </html>
   );
 }
