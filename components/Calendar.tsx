@@ -106,7 +106,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
       {isModalOpen && selectedDate && (
         <MoodModal
           date={selectedDate}
-          onClose={() => setIsModalOpen(false)}
+          onCloseAction={() => setIsModalOpen(false)}
           onSetMood={onSetMood}
         />
       )}
