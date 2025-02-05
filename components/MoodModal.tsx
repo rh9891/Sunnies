@@ -23,6 +23,14 @@ export default function MoodModal({
   const [selectedMood, setSelectedMood] = useState<string | null>(null);
   const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
   const [notes, setNotes] = useState("");
+  const formattedDate = new Date(date + "T00:00:00").toLocaleDateString(
+    "en-US",
+    {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    },
+  );
 
   const handleMoodClick = (mood: string) => {
     setSelectedMood(mood);
@@ -51,7 +59,7 @@ export default function MoodModal({
             "text-xl font-medium text-right mb-4 " + nunitoSans.className
           }
         >
-          {date}
+          {formattedDate}
         </h2>
 
         {step === 1 && (
