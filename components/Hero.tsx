@@ -1,10 +1,11 @@
+import Link from "next/link";
+
 import { atmaSans } from "@/fonts";
 import Button from "@/components/Button";
-import Calendar from "@/components/Calendar";
 
 export default function Hero() {
   return (
-    <div className="py-4 sm:py-10 flex flex-col gap-4 sm:gap-8 ">
+    <div className="py-4 sm:py-10 flex flex-col gap-8 sm:gap-10">
       <h1
         className={
           "text-5xl sm:text-text-6xl md:text-7xl text-center " +
@@ -20,10 +21,13 @@ export default function Hero() {
         <span className="font-semibold"> stay positive every day</span>.
       </p>
       <div className="grid grid-cols-2 gap-4 w-fit mx-auto">
-        <Button variant="light" text="Sign Up" />
-        <Button variant="dark" text="Log In" />
+        <Link href={"/dashboard"}>
+          <Button variant="light" text="Sign Up" />
+        </Link>
+        <Link href={"/dashboard"}>
+          <Button variant="dark" text="Log In" />
+        </Link>
       </div>
-      <Calendar />
     </div>
   );
 }

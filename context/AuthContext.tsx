@@ -1,7 +1,9 @@
 "use client";
 import {
   createContext,
+  Dispatch,
   ReactNode,
+  SetStateAction,
   useContext,
   useEffect,
   useState,
@@ -28,6 +30,7 @@ export function useAuth() {
 type AuthContextType = {
   currentUser: User | null;
   userDataObject: Record<string, any>;
+  setUserDataObject: Dispatch<SetStateAction<Record<string, any>>>;
   signup: (email: string, password: string) => Promise<any>;
   login: (email: string, password: string) => Promise<any>;
   logout: () => Promise<void>;
@@ -62,7 +65,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
       try {
         setLoading(true);
         setCurrentUser(user);
-        if (!user) return;
+        if (!user) {
+          console.log("No user found.");
+          return;
+        }
 
         console.log("Fetching user data from firebase...");
         const docRef = doc(db, "users", user.uid);
@@ -85,6 +91,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   const value: AuthContextType = {
     currentUser,
     userDataObject,
+    setUserDataObject,
     signup,
     logout,
     login,

@@ -1,6 +1,3 @@
-import { symptoms } from "@/helpers";
-import { Symptom } from "@/types";
-
 export const gradients = {
   yellow: [
     "#fff8db",
@@ -15,44 +12,29 @@ export const gradients = {
   ],
 };
 
-const generateSymptomData = (day: number): Symptom[] => {
-  const symptomKeys = Object.keys(symptoms);
-  const symptomCount = Math.floor(Math.random() * 4) + 1;
-
-  const daySymptoms: Symptom[] = [];
-  for (let i = 0; i < symptomCount; i++) {
-    const randomIndex = Math.floor(Math.random() * symptomKeys.length);
-    const symptomKey = symptomKeys[randomIndex];
-    const symptom = symptoms[symptomKey];
-
-    const severity = Math.random();
-    let severityValue;
-    if (severity < 0.3) {
-      severityValue = `${symptom.value}`;
-    } else if (severity < 0.7) {
-      severityValue = `${symptom.value}`;
-    } else {
-      severityValue = `${symptom.value}`;
-    }
-
-    daySymptoms.push({
-      ...symptom,
-      value: severityValue,
-    });
-  }
-
-  return daySymptoms;
+export const months = {
+  January: "Jan",
+  February: "Feb",
+  March: "Mar",
+  April: "Apr",
+  May: "May",
+  June: "Jun",
+  July: "Jul",
+  August: "Aug",
+  September: "Sep",
+  October: "Oct",
+  November: "Nov",
+  December: "Dec",
 };
 
-const generate45DaysSymptoms = () => {
-  const symptomsData = [];
-  for (let day = 1; day <= 45; day++) {
-    symptomsData.push({
-      day,
-      symptoms: generateSymptomData(day),
-    });
-  }
-  return symptomsData;
-};
+export const now = new Date();
 
-export const symptomsFor45Days = generate45DaysSymptoms();
+export const days = [
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+  "Sunday",
+];
