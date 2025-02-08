@@ -184,45 +184,45 @@ export default function MoodModal({
                   />
                 </div>
               )}
-              <div className="flex justify-between mt-4">
-                <button
-                  className="px-4 py-2 bg-gray-200 rounded-lg"
-                  onClick={onCloseAction}
-                >
-                  Cancel
-                </button>
-                <div className="flex gap-4">
-                  {step > 1 && (
-                    <button
-                      className="px-4 py-2 bg-gray-200 rounded-lg"
-                      onClick={() => setStep(step - 1)}
-                    >
-                      Back
-                    </button>
-                  )}
-                  {step < 3 ? (
-                    <button
-                      className={
-                        "px-4 py-2 bg-yellow-400 rounded-lg cursor-pointer " +
-                        nunitoSans.className
-                      }
-                      onClick={() => setStep(step + 1)}
-                      disabled={step === 1 && !selectedMood}
-                    >
-                      Next
-                    </button>
-                  ) : (
-                    <button
-                      className={
-                        "px-4 py-2 bg-yellow-400 rounded-lg cursor-pointer " +
-                        nunitoSans.className
-                      }
-                      onClick={handleSave}
-                    >
-                      Save
-                    </button>
-                  )}
-                </div>
+            </div>
+            <div className="bg-gray-50 px-4 py-3 flex justify-between sm:px-6">
+              <button
+                className="px-4 py-2 bg-gray-200 rounded-lg"
+                onClick={onCloseAction}
+              >
+                Cancel
+              </button>
+              <div className="flex gap-4">
+                {step > 1 && (
+                  <button
+                    className="px-4 py-2 bg-gray-200 rounded-lg"
+                    onClick={() => setStep(step - 1)}
+                  >
+                    Back
+                  </button>
+                )}
+                {step < 3 ? (
+                  <button
+                    className={
+                      "px-4 py-2 bg-yellow-400 rounded-lg cursor-pointer " +
+                      nunitoSans.className
+                    }
+                    onClick={() => setStep(step + 1)}
+                    disabled={step === 1 && !selectedMood}
+                  >
+                    Next
+                  </button>
+                ) : (
+                  <button
+                    className={
+                      "px-4 py-2 bg-yellow-400 rounded-lg cursor-pointer " +
+                      nunitoSans.className
+                    }
+                    onClick={handleSave}
+                  >
+                    Save
+                  </button>
+                )}
               </div>
             </div>
           </DialogPanel>
