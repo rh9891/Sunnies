@@ -10,7 +10,12 @@ type CalendarData = {
 
 type CalendarProps = {
   data: CalendarData;
-  onSetMood?: () => void;
+  onSetMood?: (
+    date: string,
+    mood: string,
+    symptoms: string[],
+    notes: string,
+  ) => void;
 };
 
 export default function Calendar({ data = {}, onSetMood }: CalendarProps) {

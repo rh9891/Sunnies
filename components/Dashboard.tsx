@@ -28,10 +28,18 @@ export default function Dashboard() {
     date: { label: "Date", value: new Date().toDateString() },
   };
 
-  const handleSetMood = () => {
-    // update the current state of mood/symptoms
-    // update the global state of mood/symptoms
-    // update the mood/symptoms in firebase
+  const handleSetMood = (
+    date: string,
+    mood: string,
+    symptoms: string[],
+    notes: string,
+  ) => {
+    setData((prevData) => ({
+      ...prevData,
+      [date]: { mood, symptoms, notes },
+    }));
+
+    // TODO: Save data to Firebase
   };
 
   useEffect(() => {
