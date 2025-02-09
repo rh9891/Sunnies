@@ -1,8 +1,12 @@
 "use client";
 import { useEffect, useState } from "react";
+import { db } from "@/firebase";
+import { doc, setDoc } from "firebase/firestore";
 
-import Calendar from "@/components/Calendar";
 import { useAuth } from "@/context/AuthContext";
+import Calendar from "@/components/Calendar";
+import Loading from "@/components/Loading";
+import Login from "@/components/Login";
 
 type Statuses = {
   numberOfDays: { label: string; value: number };
@@ -20,7 +24,7 @@ type UserData = {
 export default function Dashboard() {
   const [data, setData] = useState<UserData>({});
 
-  const { currentUser, userDataObject } = useAuth();
+  const { currentUser, userDataObject, loading } = useAuth();
 
   const statuses: Statuses = {
     numberOfDays: { label: "Number of Days", value: 14 },
@@ -28,18 +32,28 @@ export default function Dashboard() {
     date: { label: "Date", value: new Date().toDateString() },
   };
 
-  const handleSetMood = (
+  const handleSetMood = async (
     date: string,
     mood: string,
     symptoms: string[],
     notes: string,
   ) => {
-    setData((prevData) => ({
-      ...prevData,
-      [date]: { mood, symptoms, notes },
-    }));
+    if (!currentUser) {
+      console.error("No authenticated user found.");
+      return;
+    }
+    const userDocRef = doc(db, "users", currentUser.uid, "entries", date);
 
-    // TODO: Save data to Firebase
+    try {
+      await setDoc(userDocRef, { mood, symptoms, notes }, { merge: true });
+
+      setData((prevData) => ({
+        ...prevData,
+        [date]: { mood, symptoms, notes },
+      }));
+    } catch (error) {
+      console.error("Error saving mood entry:", error);
+    }
   };
 
   useEffect(() => {
@@ -56,6 +70,14 @@ export default function Dashboard() {
     },
     {} as { [date: string]: number },
   );
+
+  if (!currentUser) {
+    return <Login />;
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex flex-col flex-1 gap-8 sm:gap-10 md:gap-16">
