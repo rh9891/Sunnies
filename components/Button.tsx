@@ -7,9 +7,15 @@ type ButtonProps = {
   text: string;
   variant?: "light" | "dark";
   full?: boolean;
+  onClick: () => void;
 };
 
-export default function Button({ text, variant = "light", full }: ButtonProps) {
+export default function Button({
+  text,
+  variant = "light",
+  full,
+  onClick,
+}: ButtonProps) {
   return (
     <button
       className={
@@ -19,6 +25,7 @@ export default function Button({ text, variant = "light", full }: ButtonProps) {
           ? " text-white bg-yellow-400 border-yellow-400 "
           : " border-yellow-400")
       }
+      onClick={onClick}
     >
       <p
         className={

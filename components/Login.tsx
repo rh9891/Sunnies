@@ -3,6 +3,7 @@ import { ReactNode, useState } from "react";
 
 import { atmaSans, nunitoSans } from "@/fonts";
 import Button from "@/components/Button";
+import { useAuth } from "@/context/AuthContext";
 
 type LoginProps = {
   children?: ReactNode;
@@ -13,9 +14,26 @@ export default function Login({ className }: LoginProps) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
+  const [authenticating, setAuthenticating] = useState(false);
+
+  const { signup, login } = useAuth();
 
   const handleSubmit = async () => {
-    console.log(email, password);
+    if (!email || !password || password.length < 6) {
+      return;
+    }
+    setAuthenticating(true);
+    try {
+      if (isRegistering) {
+        await signup(email, password);
+      } else {
+        await login(email, password);
+      }
+    } catch (error) {
+      console.error("Error logging in:", error);
+    } finally {
+      setAuthenticating(false);
+    }
   };
 
   return (
@@ -44,7 +62,12 @@ export default function Login({ className }: LoginProps) {
         type="password"
       />
       <div className="max-w-[400px] w-full mx-auto flex flex-col gap-4">
-        <Button text="Submit" variant="light" full />
+        <Button
+          text={authenticating ? "Submitting..." : "Submit"}
+          variant="light"
+          full
+          onClick={handleSubmit}
+        />
         <p className={nunitoSans.className + " text-center"}>
           {isRegistering
             ? "Already have an account? "
