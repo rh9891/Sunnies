@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { db } from "@/firebase";
-import { doc, setDoc } from "firebase/firestore";
+import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
 import { useAuth } from "@/context/AuthContext";
 import Calendar from "@/components/Calendar";
@@ -24,7 +24,7 @@ type UserData = {
 export default function Dashboard() {
   const [data, setData] = useState<UserData>({});
 
-  const { currentUser, userDataObject, loading } = useAuth();
+  const { currentUser, loading } = useAuth();
 
   const statuses: Statuses = {
     numberOfDays: { label: "Number of Days", value: 14 },
@@ -57,11 +57,31 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    if (!currentUser || !userDataObject) {
-      return;
-    }
-    setData(userDataObject);
-  }, [currentUser, userDataObject]);
+    if (!currentUser) return;
+
+    const fetchData = async () => {
+      try {
+        const userEntriesRef = collection(
+          db,
+          "users",
+          currentUser.uid,
+          "entries",
+        );
+        const snapshot = await getDocs(userEntriesRef);
+        const entries: UserData = {};
+
+        snapshot.forEach((doc) => {
+          entries[doc.id] = doc.data() as { mood: string; symptoms: string[] };
+        });
+
+        setData(entries);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
+    };
+
+    fetchData();
+  }, [currentUser]);
 
   const calendarData = Object.keys(data).reduce(
     (acc, date) => {
@@ -71,7 +91,7 @@ export default function Dashboard() {
     {} as { [date: string]: number },
   );
 
-  if (!currentUser) {
+  if (!currentUser && !loading) {
     return <Login />;
   }
 
