@@ -79,13 +79,13 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
       <Styled.CalendarContainer>
         <Styled.Header>
           <Styled.Button onClick={handlePreviousMonth}>
-            <FiChevronLeft size={24} />
+            <FiChevronLeft color="#334155" size={24} />
           </Styled.Button>
           <Styled.MonthText
             className={nunitoSans.className}
           >{`${months[selectedMonth]} ${selectedYear}`}</Styled.MonthText>
           <Styled.Button onClick={handleNextMonth}>
-            <FiChevronRight size={24} />
+            <FiChevronRight color="#334155" size={24} />
           </Styled.Button>
         </Styled.Header>
 

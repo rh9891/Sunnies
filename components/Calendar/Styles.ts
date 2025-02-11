@@ -35,12 +35,8 @@ export const Button = styled.button`
   border-radius: 50%;
   height: 32px;
   width: 32px;
-  background: #ffffb7;
+  border: 2px solid #334155;
   cursor: pointer;
-
-  &:hover {
-    background: #facc15;
-  }
 `;
 
 export const Weekdays = styled.div`
@@ -72,7 +68,7 @@ export const Day = styled.div<{ $isToday?: boolean; $bgColor?: string }>`
   cursor: pointer;
   transition: background-color 0.2s;
 
-  ${(props) => props.$isToday && "ring: 2px solid yellow;"}
+  ${(props) => props.$isToday && "border: 2px solid #ffc100;"}
   &:hover {
     background-color: #facc15;
     color: white;
