@@ -11,7 +11,9 @@ export const CalendarContainer = styled.div`
   flex-direction: column;
   background: white;
   border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow:
+    0 10px 20px rgba(0, 0, 0, 0.19),
+    0 6px 6px rgba(0, 0, 0, 0.23);
   width: 100%;
   max-width: 500px;
 `;
@@ -35,7 +37,6 @@ export const Button = styled.button`
   border-radius: 50%;
   height: 32px;
   width: 32px;
-  border: 2px solid #334155;
   cursor: pointer;
 `;
 
@@ -45,7 +46,7 @@ export const Weekdays = styled.div`
   text-align: center;
   font-weight: 600;
   font-size: 14px;
-  color: #1f2937;
+  color: #1e293b;
   padding: 8px;
   justify-content: space-around;
 `;

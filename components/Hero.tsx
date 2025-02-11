@@ -1,7 +1,5 @@
-import Link from "next/link";
-
 import { atmaSans } from "@/fonts";
-import Button from "@/components/Button";
+import HeroButtons from "@/components/HeroButtons";
 
 export default function Hero() {
   return (
@@ -20,14 +18,7 @@ export default function Hero() {
         Track your journey, share insights, and
         <span className="font-semibold"> stay positive every day</span>.
       </p>
-      <div className="grid grid-cols-2 gap-4 w-fit mx-auto">
-        <Link href={"/dashboard"}>
-          <Button variant="light" text="Sign Up" />
-        </Link>
-        <Link href={"/dashboard"}>
-          <Button variant="dark" text="Log In" />
-        </Link>
-      </div>
+      <HeroButtons />
     </div>
   );
 }

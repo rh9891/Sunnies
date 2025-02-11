@@ -4,11 +4,11 @@ import { db } from "@/firebase";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
 import { useAuth } from "@/context/AuthContext";
+import { atmaSans } from "@/fonts";
 import { now } from "@/utils";
 import Calendar from "@/components/Calendar/index";
 import Loading from "@/components/Loading";
 import Login from "@/components/Login";
-import { atmaSans } from "@/fonts";
 
 type Statuses = {
   numberOfDays: { label: string; value: number };
@@ -25,16 +25,18 @@ type UserData = {
 
 export default function Dashboard() {
   const [data, setData] = useState<UserData>({});
-
   const { currentUser, loading } = useAuth();
 
   const statuses: Statuses = {
-    numberOfDays: { label: "Number of Days", value: Object.keys(data).length },
+    numberOfDays: {
+      label: "Number of Days Logged",
+      value: Object.keys(data).length,
+    },
     timeRemaining: {
       label: "Time Remaining",
       value: `${23 - now.getHours()}H ${60 - now.getMinutes()}M`,
     },
-    date: { label: "Date", value: new Date().toDateString() },
+    date: { label: "Today's Date", value: new Date().toDateString() },
   };
 
   const handleSetMood = async (

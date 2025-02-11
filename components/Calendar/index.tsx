@@ -3,7 +3,7 @@ import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import { currentMonth, days, gradients, months, Months, now } from "@/utils";
-import { nunitoSans } from "@/fonts";
+import { atmaSans } from "@/fonts";
 import MoodModal from "@/components/MoodModal";
 import * as Styled from "./Styles";
 
@@ -82,16 +82,16 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
             <FiChevronLeft color="#334155" size={24} />
           </Styled.Button>
           <Styled.MonthText
-            className={nunitoSans.className}
+            className={atmaSans.className}
           >{`${months[selectedMonth]} ${selectedYear}`}</Styled.MonthText>
           <Styled.Button onClick={handleNextMonth}>
             <FiChevronRight color="#334155" size={24} />
           </Styled.Button>
         </Styled.Header>
 
-        <Styled.Weekdays className={nunitoSans.className}>
+        <Styled.Weekdays className={atmaSans.className}>
           {["M", "T", "W", "T", "F", "S", "S"].map((day, i) => (
-            <div key={`${day}-${i}`} className={`flex justify-center`}>
+            <div key={`${day}-${i}`} className="flex justify-center">
               {day}
             </div>
           ))}
@@ -104,7 +104,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                 key={i}
                 className={
                   "grid grid-cols-7 gap-2 justify-items-center " +
-                  nunitoSans.className
+                  atmaSans.className
                 }
               >
                 {days.map((day, j) => {
