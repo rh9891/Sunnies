@@ -131,9 +131,11 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                   let isToday = dateKey === todayFormatted;
                   const intensity = data[dateKey] ?? 0;
                   let color =
-                    gradients.yellow[
-                      Math.min(intensity, gradients.yellow.length - 1)
-                    ];
+                    intensity > 0
+                      ? gradients.yellow[
+                          Math.min(intensity, gradients.yellow.length - 1)
+                        ]
+                      : "#ffffff";
 
                   if (!dayDisplay) {
                     return <div key={j} className="bg-white" />;

@@ -29,7 +29,7 @@ export default function Dashboard() {
   const { currentUser, loading } = useAuth();
 
   const statuses: Statuses = {
-    numberOfDays: { label: "Number of Days", value: 14 },
+    numberOfDays: { label: "Number of Days", value: Object.keys(data).length },
     timeRemaining: {
       label: "Time Remaining",
       value: `${23 - now.getHours()}H ${60 - now.getMinutes()}M`,

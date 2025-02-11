@@ -4,10 +4,10 @@ import { atmaSans } from "@/fonts";
 type ButtonProps = {
   children?: ReactNode;
   className?: string;
-  text?: string;
+  text: string;
   variant?: "light" | "dark";
   full?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export default function Button({
