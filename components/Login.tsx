@@ -15,22 +15,31 @@ export default function Login({ className }: LoginProps) {
   const [password, setPassword] = useState("");
   const [isRegistering, setIsRegistering] = useState(false);
   const [authenticating, setAuthenticating] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>("");
 
   const { signup, login } = useAuth();
 
   const handleSubmit = async () => {
     if (!email || !password || password.length < 6) {
+      setErrorMessage("Password must be at least 6 characters.");
       return;
     }
     setAuthenticating(true);
+    setErrorMessage("");
     try {
       if (isRegistering) {
         await signup(email, password);
       } else {
         await login(email, password);
       }
-    } catch (error) {
+    } catch (error: unknown) {
       console.error("Error logging in:", error);
+
+      if (error instanceof Error) {
+        setErrorMessage(error.message);
+      } else {
+        setErrorMessage("An unexpected error occurred. Please try again.");
+      }
     } finally {
       setAuthenticating(false);
     }
@@ -80,6 +89,11 @@ export default function Login({ className }: LoginProps) {
           </button>
         </p>
       </div>
+      {errorMessage && (
+        <div className="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg text-sm w-full max-w-[400px] text-center">
+          {errorMessage}
+        </div>
+      )}
     </div>
   );
 }

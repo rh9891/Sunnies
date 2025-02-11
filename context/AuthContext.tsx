@@ -70,7 +70,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
           return;
         }
 
-        console.log("Fetching user data from firebase...");
         const docRef = doc(db, "users", user.uid);
         const docSnap = await getDoc(docRef);
 
