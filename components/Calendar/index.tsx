@@ -113,12 +113,22 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                     dayIndex > totalDaysInMonth
                       ? false
                       : !(row === 0 && j < firstDayOfMonth);
-                  let isToday = dayIndex === now.getDate();
+                  let todayDate = new Date();
+                  let todayFormatted = `${todayDate.getFullYear()}-${(
+                    todayDate.getMonth() + 1
+                  )
+                    .toString()
+                    .padStart(
+                      2,
+                      "0",
+                    )}-${todayDate.getDate().toString().padStart(2, "0")}`;
+
                   let dateKey = `${selectedYear}-${(
                     Object.keys(months).indexOf(selectedMonth) + 1
                   )
                     .toString()
                     .padStart(2, "0")}-${dayIndex.toString().padStart(2, "0")}`;
+                  let isToday = dateKey === todayFormatted;
                   const intensity = data[dateKey] ?? 0;
                   let color =
                     gradients.yellow[
