@@ -2,8 +2,9 @@
 import Link from "next/link";
 import Image from "next/image";
 
-import Sunnies from "../../public/sunnies.png";
 import { atmaSans } from "@/fonts";
+import Sunnies from "../../public/sunnies.png";
+import Logout from "../Logout";
 import * as Styled from "./Styles";
 
 export default function Header() {
@@ -20,6 +21,7 @@ export default function Header() {
           Sunnies
         </h1>
       </Link>
+      <Logout />
     </Styled.Header>
   );
 }

@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 
 import { moods, symptoms } from "@/helpers";
-import { atmaSans, nunitoSans } from "@/fonts";
+import { atmaSans } from "@/fonts";
 
 type MoodModalProps = {
   date: string;
@@ -66,29 +66,29 @@ export default function MoodModal({
             transition
             className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-3xl data-closed:sm:translate-y-0 data-closed:sm:scale-95"
           >
+            <h2
+              className={
+                "text-xl font-medium text-center mb-4 bg-yellow-400 p-4 " +
+                atmaSans.className
+              }
+            >
+              Log for {formattedDate}
+            </h2>
             <div className="bg-white p-6 rounded-lg">
-              <h2
-                className={
-                  "text-xl font-medium text-right mb-4 " + nunitoSans.className
-                }
-              >
-                {formattedDate}
-              </h2>
               {step === 1 && (
                 <div>
-                  <h5
+                  <h1
                     className={
-                      "text-3xl sm:text-4xl md:text-5xl text-center mb-4 " +
+                      "text-2xl sm:text-3xl md:text-4xl text-center mb-6 " +
                       atmaSans.className
                     }
                   >
                     How do you
                     <span className={"text-gradient " + atmaSans.className}>
-                      {" "}
-                      feel{" "}
+                      &nbsp;feel
                     </span>
-                    today?
-                  </h5>
+                    ?
+                  </h1>
                   <div className="grid grid-cols-2 sm:grid-cols-5 gap-4">
                     {Object.values(moods).map((mood, i) => (
                       <button
@@ -106,7 +106,7 @@ export default function MoodModal({
                         <p
                           className={
                             "text-center text-xs sm:text-sm md:text-base " +
-                            nunitoSans.className
+                            atmaSans.className
                           }
                         >
                           {mood.label}
@@ -120,14 +120,13 @@ export default function MoodModal({
                 <div>
                   <h5
                     className={
-                      "text-3xl sm:text-4xl md:text-5xl text-center mb-4 " +
+                      "text-2xl sm:text-3xl md:text-4xl text-center mb-6 " +
                       atmaSans.className
                     }
                   >
                     Are you experiencing any
                     <span className={"text-gradient " + atmaSans.className}>
-                      {" "}
-                      symptoms
+                      &nbsp;symptoms
                     </span>
                     ?
                   </h5>
@@ -150,7 +149,7 @@ export default function MoodModal({
                         <p
                           className={
                             "text-center text-xs sm:text-sm md:text-base " +
-                            nunitoSans.className
+                            atmaSans.className
                           }
                         >
                           {symptom.label}
@@ -164,14 +163,13 @@ export default function MoodModal({
                 <div>
                   <h5
                     className={
-                      "text-3xl sm:text-4xl md:text-5xl text-center mb-4 " +
+                      "text-2xl sm:text-3xl md:text-4xl text-center mb-6 " +
                       atmaSans.className
                     }
                   >
                     Is there anything else on your
                     <span className={"text-gradient " + atmaSans.className}>
-                      {" "}
-                      mind
+                      &nbsp;mind
                     </span>
                     ?
                   </h5>
@@ -187,7 +185,9 @@ export default function MoodModal({
             </div>
             <div className="bg-gray-50 px-4 py-3 flex justify-between sm:px-6">
               <button
-                className="px-4 py-2 bg-gray-200 rounded-lg"
+                className={
+                  "px-4 py-2 bg-gray-200 rounded-lg " + atmaSans.className
+                }
                 onClick={onCloseAction}
               >
                 Cancel
@@ -195,7 +195,9 @@ export default function MoodModal({
               <div className="flex gap-4">
                 {step > 1 && (
                   <button
-                    className="px-4 py-2 bg-gray-200 rounded-lg"
+                    className={
+                      "px-4 py-2 bg-gray-200 rounded-lg " + atmaSans.className
+                    }
                     onClick={() => setStep(step - 1)}
                   >
                     Back
@@ -205,7 +207,7 @@ export default function MoodModal({
                   <button
                     className={
                       "px-4 py-2 bg-yellow-400 rounded-lg cursor-pointer " +
-                      nunitoSans.className
+                      atmaSans.className
                     }
                     onClick={() => setStep(step + 1)}
                     disabled={step === 1 && !selectedMood}
@@ -216,7 +218,7 @@ export default function MoodModal({
                   <button
                     className={
                       "px-4 py-2 bg-yellow-400 rounded-lg cursor-pointer " +
-                      nunitoSans.className
+                      atmaSans.className
                     }
                     onClick={handleSave}
                   >

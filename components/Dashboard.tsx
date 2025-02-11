@@ -128,7 +128,7 @@ export default function Dashboard() {
                 </h5>
                 <p
                   className={
-                    "text-yellow-400 leading-normal font-bold " +
+                    "text-yellow-400 text-2xl sm:text-3xl font-bold " +
                     atmaSans.className
                   }
                 >
