@@ -3,40 +3,60 @@ import { useEffect, useState } from "react";
 import { db } from "@/firebase";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
+import { Statuses, UserData } from "@/types";
 import { useAuth } from "@/context/AuthContext";
 import { atmaSans } from "@/fonts";
-import { now } from "@/utils";
 import Calendar from "@/components/Calendar/index";
 import Loading from "@/components/Loading";
 import Login from "@/components/Login";
-
-type Statuses = {
-  numberOfDays: { label: string; value: number };
-  timeRemaining: { label: string; value: string };
-  date: { label: string; value: string };
-};
-
-type UserData = {
-  [date: string]: {
-    mood: string;
-    symptoms: string[];
-  };
-};
 
 export default function Dashboard() {
   const [data, setData] = useState<UserData>({});
   const { currentUser, loading } = useAuth();
 
-  const statuses: Statuses = {
-    numberOfDays: {
-      label: "Number of Days Logged",
-      value: Object.keys(data).length,
-    },
-    timeRemaining: {
-      label: "Time Remaining",
-      value: `${23 - now.getHours()}H ${60 - now.getMinutes()}M`,
-    },
+  const calculateStreak = (dates: string[]): number => {
+    if (!dates.length) return 0;
+
+    const sortedDates = dates.sort(
+      (a, b) => new Date(b).getTime() - new Date(a).getTime(),
+    );
+    let streak = 1;
+    let prevDate = new Date(sortedDates[0]);
+
+    for (let i = 1; i < sortedDates.length; i++) {
+      const currentDate = new Date(sortedDates[i]);
+      const diff =
+        (prevDate.getTime() - currentDate.getTime()) / (1000 * 60 * 60 * 24);
+      if (diff === 1) {
+        streak++;
+      } else {
+        break;
+      }
+      prevDate = currentDate;
+    }
+
+    return streak;
+  };
+
+  const getMostCommonMood = (data: UserData) => {
+    const moodCounts: Record<string, number> = {};
+    Object.values(data).forEach(({ mood }) => {
+      moodCounts[mood] = (moodCounts[mood] || 0) + 1;
+    });
+
+    return Object.keys(moodCounts).reduce(
+      (a, b) => (moodCounts[a] > moodCounts[b] ? a : b),
+      "N/A",
+    );
+  };
+
+  const statuses = {
     date: { label: "Today's Date", value: new Date().toDateString() },
+    streak: {
+      label: "Current Streak",
+      value: calculateStreak(Object.keys(data)) + " days",
+    },
+    commonMood: { label: "Most Common Mood", value: getMostCommonMood(data) },
   };
 
   const handleSetMood = async (
