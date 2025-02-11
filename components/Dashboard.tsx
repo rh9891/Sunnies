@@ -4,9 +4,11 @@ import { db } from "@/firebase";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
 import { useAuth } from "@/context/AuthContext";
-import Calendar from "@/components/Calendar";
+import { now } from "@/utils";
+import Calendar from "@/components/Calendar/index";
 import Loading from "@/components/Loading";
 import Login from "@/components/Login";
+import { atmaSans } from "@/fonts";
 
 type Statuses = {
   numberOfDays: { label: string; value: number };
@@ -28,7 +30,10 @@ export default function Dashboard() {
 
   const statuses: Statuses = {
     numberOfDays: { label: "Number of Days", value: 14 },
-    timeRemaining: { label: "Time Remaining", value: "13:14:26" },
+    timeRemaining: {
+      label: "Time Remaining",
+      value: `${23 - now.getHours()}H ${60 - now.getMinutes()}M`,
+    },
     date: { label: "Date", value: new Date().toDateString() },
   };
 
@@ -101,6 +106,37 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col flex-1 gap-8 sm:gap-10 md:gap-16">
+      <div className="flex flex-row gap-4 items-center justify-center">
+        {Object.keys(statuses).map((status) => {
+          const statusKey = status as keyof Statuses;
+
+          return (
+            <div
+              key={statusKey}
+              className="relative flex flex-col my-6 bg-white shadow-sm border border-black rounded-lg w-64"
+            >
+              <div className="p-4">
+                <h5
+                  className={
+                    "mb-2 text-slate-800 text-xl font-bold " +
+                    atmaSans.className
+                  }
+                >
+                  {statuses[statusKey].label}
+                </h5>
+                <p
+                  className={
+                    "text-yellow-400 leading-normal font-bold " +
+                    atmaSans.className
+                  }
+                >
+                  {statuses[statusKey].value}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+      </div>
       <Calendar data={calendarData} onSetMood={handleSetMood} />
     </div>
   );
