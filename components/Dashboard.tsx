@@ -108,33 +108,30 @@ export default function Dashboard() {
 
   return (
     <div className="flex flex-col flex-1 gap-8 sm:gap-10 md:gap-16">
-      <div className="flex flex-row gap-4 items-center justify-center">
+      <div className="flex flex-wrap justify-center gap-4">
         {Object.keys(statuses).map((status) => {
           const statusKey = status as keyof Statuses;
 
           return (
             <div
               key={statusKey}
-              className="relative flex flex-col my-6 bg-white shadow-sm border border-black rounded-lg w-64"
+              className="relative flex flex-col justify-between bg-white shadow-sm border border-black rounded-lg w-full sm:w-64 min-h-[120px] p-4"
             >
-              <div className="p-4">
-                <h5
-                  className={
-                    "mb-2 text-slate-800 text-xl font-bold " +
-                    atmaSans.className
-                  }
-                >
-                  {statuses[statusKey].label}
-                </h5>
-                <p
-                  className={
-                    "text-yellow-400 text-2xl sm:text-3xl font-bold " +
-                    atmaSans.className
-                  }
-                >
-                  {statuses[statusKey].value}
-                </p>
-              </div>
+              <h5
+                className={
+                  "mb-2 text-slate-800 text-xl font-bold " + atmaSans.className
+                }
+              >
+                {statuses[statusKey].label}
+              </h5>
+              <p
+                className={
+                  "text-yellow-400 text-2xl sm:text-3xl font-bold " +
+                  atmaSans.className
+                }
+              >
+                {statuses[statusKey].value}
+              </p>
             </div>
           );
         })}
