@@ -40,14 +40,17 @@ export default function Dashboard() {
 
   const getMostCommonMood = (data: UserData) => {
     const moodCounts: Record<string, number> = {};
+
     Object.values(data).forEach(({ mood }) => {
       moodCounts[mood] = (moodCounts[mood] || 0) + 1;
     });
 
-    return Object.keys(moodCounts).reduce(
-      (a, b) => (moodCounts[a] > moodCounts[b] ? a : b),
-      "N/A",
+    const maxCount = Math.max(...Object.values(moodCounts), 0);
+    const mostCommonMoods = Object.keys(moodCounts).filter(
+      (mood) => moodCounts[mood] === maxCount,
     );
+
+    return mostCommonMoods.length > 1 ? "N/A" : mostCommonMoods[0] || "N/A";
   };
 
   const statuses = {
