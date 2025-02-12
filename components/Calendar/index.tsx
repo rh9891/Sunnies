@@ -77,6 +77,10 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
     setIsModalOpen(true);
   };
 
+  const handleClose = () => {
+    setIsModalOpen(false);
+  };
+
   const firstDayOfMonth =
     (new Date(
       selectedYear,
@@ -187,7 +191,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
         {isModalOpen && selectedDate && (
           <MoodModal
             date={selectedDate}
-            onCloseAction={() => setIsModalOpen(false)}
+            onCloseAction={handleClose}
             onSetMood={onSetMood}
           />
         )}
