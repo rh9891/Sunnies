@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { MouseEvent, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import { currentMonth, days, gradients, months, Months, now } from "@/utils";
 import { atmaSans } from "@/fonts";
 import MoodModal from "@/components/MoodModal";
+import Tooltip from "@/components/Tooltip";
 import * as Styled from "./Styles";
 
 type CalendarData = {
@@ -28,6 +29,12 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState(now.getFullYear());
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [tooltipDate, setTooltipDate] = useState<string | null>(null);
+  const [tooltipPosition, setTooltipPosition] = useState<{
+    x: number;
+    y: number;
+  } | null>(null);
 
   const handleNextMonth = () => {
     const monthIndex = Object.keys(months).indexOf(selectedMonth);
@@ -49,9 +56,23 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
     }
   };
 
-  const handleOnClick = (dayIndex: number) => {
+  const handleOnClick = (dayIndex: number, e: MouseEvent) => {
     const monthIndex = Object.keys(months).indexOf(selectedMonth) + 1;
     const formattedDate = `${selectedYear}-${monthIndex.toString().padStart(2, "0")}-${dayIndex.toString().padStart(2, "0")}`;
+
+    const selectedDate = new Date(formattedDate);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    if (selectedDate > today) {
+      setErrorMessage("You cannot select a future date.");
+      setTooltipDate(formattedDate);
+      setTooltipPosition({ x: e.clientX, y: e.clientY });
+
+      setTimeout(() => setTooltipDate(null), 3000);
+      return;
+    }
+
     setSelectedDate(formattedDate);
     setIsModalOpen(true);
   };
@@ -146,9 +167,15 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                       key={j}
                       $bgColor={color}
                       $isToday={isToday}
-                      onClick={() => handleOnClick(dayIndex)}
+                      onClick={(e) => handleOnClick(dayIndex, e)}
                     >
                       {dayIndex}
+                      {tooltipDate === dateKey && tooltipPosition && (
+                        <Tooltip
+                          message={errorMessage}
+                          position={tooltipPosition}
+                        />
+                      )}
                     </Styled.Day>
                   );
                 })}

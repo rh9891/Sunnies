@@ -22,3 +22,8 @@ export type UserData = {
     symptoms: string[];
   };
 };
+
+export type Position = {
+  x: number;
+  y: number;
+};
