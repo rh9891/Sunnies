@@ -3,12 +3,12 @@ export const gradients = {
     "#FFFFB7",
     "#FFF192",
     "#FFEA61",
+    "#FFE136",
     "#FFDD3C",
     "#FFDB01",
     "#FFD400",
+    "#FFD900",
     "#FFC212",
-    "#FEA923",
-    "#FE9033",
   ],
 };
 

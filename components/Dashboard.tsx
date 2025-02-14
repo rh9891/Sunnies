@@ -101,7 +101,11 @@ export default function Dashboard() {
         const entries: UserData = {};
 
         snapshot.forEach((doc) => {
-          entries[doc.id] = doc.data() as { mood: string; symptoms: string[] };
+          entries[doc.id] = doc.data() as {
+            mood: string;
+            symptoms: string[];
+            notes: string;
+          };
         });
 
         setData(entries);
@@ -130,7 +134,7 @@ export default function Dashboard() {
   }
 
   return (
-    <div className="flex flex-col flex-1 gap-8 sm:gap-10 md:gap-16">
+    <div className="flex justify-center flex-col flex-1 gap-8 sm:gap-10 md:gap-16">
       <div className="flex flex-wrap justify-center gap-4">
         {Object.keys(statuses).map((status) => {
           const statusKey = status as keyof Statuses;

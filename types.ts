@@ -20,10 +20,6 @@ export type UserData = {
   [date: string]: {
     mood: string;
     symptoms: string[];
+    notes: string;
   };
-};
-
-export type Position = {
-  x: number;
-  y: number;
 };
