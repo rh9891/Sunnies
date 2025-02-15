@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useAuth } from "@/context/AuthContext";
 import Button from "@/components/Button";
 
-export default function HeroButtons() {
+export default function ButtonBar() {
   const { currentUser } = useAuth();
 
   if (currentUser) {

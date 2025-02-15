@@ -1,5 +1,5 @@
 import { atmaSans } from "@/fonts";
-import HeroButtons from "@/components/HeroButtons";
+import ButtonBar from "@/components/ButtonBar";
 
 export default function Hero() {
   return (
@@ -18,7 +18,7 @@ export default function Hero() {
         Track your journey, share insights, and
         <span className="font-semibold"> stay positive every day</span>.
       </p>
-      <HeroButtons />
+      <ButtonBar />
     </div>
   );
 }
