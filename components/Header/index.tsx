@@ -10,7 +10,7 @@ import * as Styled from "./Styles";
 export default function Header() {
   return (
     <Styled.Header className="p-4 sm:p-8 flex items-center justify-between gap-4">
-      <Link href="/" className="flex items-start gap-2">
+      <Link href="/" className="flex items-center gap-2">
         <Image src={Sunnies} alt="Sunnies Logo" height={36} width={36} />
         <h1
           className={
