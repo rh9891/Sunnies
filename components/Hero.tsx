@@ -10,9 +10,9 @@ export default function Hero() {
           atmaSans.className
         }
       >
-        Reflect, grow, and embrace{" "}
-        <span className="text-gradient">brighter</span> days with{" "}
-        <span className="text-gradient">Sunnies</span>.
+        Reflect, grow, and embrace&nbsp;
+        <span className="text-gradient">brighter</span> days with&nbsp;
+        <span className="text-gradient">Sunnies</span>
       </h1>
       <p className="text-lg sm:text-xl md:text-2xl text-center w-full mx-auto max-w-[600px]">
         Track your journey, share insights, and
