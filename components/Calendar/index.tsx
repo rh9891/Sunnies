@@ -1,5 +1,5 @@
 "use client";
-import { MouseEvent, useState } from "react";
+import { useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import { currentMonth, days, gradients, months, Months, now } from "@/utils";
@@ -50,7 +50,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
     }
   };
 
-  const handleOnClick = (dayIndex: number, e: MouseEvent) => {
+  const handleOnClick = (dayIndex: number) => {
     const monthIndex = Object.keys(months).indexOf(selectedMonth) + 1;
     const formattedDate = `${selectedYear}-${monthIndex.toString().padStart(2, "0")}-${dayIndex.toString().padStart(2, "0")}`;
 
@@ -139,13 +139,13 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                   }
                 >
                   {days.map((day, j) => {
-                    let dayIndex = i * 7 + j - firstDayOfMonth + 1;
-                    let dayDisplay =
+                    const dayIndex = i * 7 + j - firstDayOfMonth + 1;
+                    const dayDisplay =
                       dayIndex > totalDaysInMonth
                         ? false
                         : !(row === 0 && j < firstDayOfMonth);
-                    let todayDate = new Date();
-                    let todayFormatted = `${todayDate.getFullYear()}-${(
+                    const todayDate = new Date();
+                    const todayFormatted = `${todayDate.getFullYear()}-${(
                       todayDate.getMonth() + 1
                     )
                       .toString()
@@ -154,7 +154,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                         "0",
                       )}-${todayDate.getDate().toString().padStart(2, "0")}`;
 
-                    let dateKey = `${selectedYear}-${(
+                    const dateKey = `${selectedYear}-${(
                       Object.keys(months).indexOf(selectedMonth) + 1
                     )
                       .toString()
@@ -162,12 +162,12 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                         2,
                         "0",
                       )}-${dayIndex.toString().padStart(2, "0")}`;
-                    let isToday = dateKey === todayFormatted;
+                    const isToday = dateKey === todayFormatted;
                     const intensity =
                       (data?.[dateKey]?.mood ? 1 : 0) +
                       (data?.[dateKey]?.symptoms?.length || 0) +
                       (data?.[dateKey]?.notes ? 1 : 0);
-                    let color =
+                    const color =
                       intensity > 0
                         ? gradients.yellow[
                             Math.min(intensity, gradients.yellow.length - 1)
