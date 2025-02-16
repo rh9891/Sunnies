@@ -6,6 +6,7 @@ import { currentMonth, days, gradients, months, Months, now } from "@/utils";
 import { CalendarData } from "@/types";
 import { atmaSans } from "@/fonts";
 import MoodModal from "@/components/MoodModal";
+import ConfirmationModal from "@/components/ConfirmationModal";
 import Toast from "@/components/Toast";
 import * as Styled from "./Styles";
 
@@ -26,6 +27,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedYear, setSelectedYear] = useState(now.getFullYear());
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [isToastOpen, setIsToastOpen] = useState(false);
 
   const handleNextMonth = () => {
@@ -52,7 +54,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
     const monthIndex = Object.keys(months).indexOf(selectedMonth) + 1;
     const formattedDate = `${selectedYear}-${monthIndex.toString().padStart(2, "0")}-${dayIndex.toString().padStart(2, "0")}`;
 
-    const selectedDate = new Date(formattedDate);
+    const selectedDate = new Date(selectedYear, monthIndex - 1, dayIndex);
     const today = new Date();
     today.setHours(0, 0, 0, 0);
 
@@ -62,12 +64,27 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
       return;
     }
 
+    if (selectedDate < today) {
+      setSelectedDate(formattedDate);
+      setIsConfirmationModalOpen(true);
+      return;
+    }
+
     setSelectedDate(formattedDate);
     setIsModalOpen(true);
   };
 
   const handleClose = () => {
     setIsModalOpen(false);
+  };
+
+  const handleCloseConfirmation = () => {
+    setIsConfirmationModalOpen(false);
+  };
+
+  const handleConfirmation = () => {
+    setIsConfirmationModalOpen(false);
+    setIsModalOpen(true);
   };
 
   const firstDayOfMonth =
@@ -182,6 +199,12 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
               existingData={data[selectedDate]}
               onCloseAction={handleClose}
               onSetMood={onSetMood}
+            />
+          )}
+          {isConfirmationModalOpen && selectedDate && (
+            <ConfirmationModal
+              onCloseAction={handleCloseConfirmation}
+              onConfirmAction={handleConfirmation}
             />
           )}
         </Styled.CalendarContainer>

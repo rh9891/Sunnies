@@ -85,7 +85,7 @@ export default function MoodModal({
           >
             <h2
               className={
-                "text-xl font-medium text-center mb-4 bg-yellow-400 p-4 " +
+                "text-xl font-medium text-start mb-4 bg-yellow-400 p-4 " +
                 atmaSans.className
               }
             >
