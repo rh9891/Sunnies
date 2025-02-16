@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { atmaSans } from "@/fonts";
-import Sunnies from "../../public/sunnies.png";
+import Sunnies from "Sunnies.png";
 import Logout from "../Logout";
 import * as Styled from "./Styles";
 
