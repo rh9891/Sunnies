@@ -183,7 +183,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                         key={j}
                         $bgColor={color}
                         $isToday={isToday}
-                        onClick={(e) => handleOnClick(dayIndex, e)}
+                        onClick={() => handleOnClick(dayIndex)}
                       >
                         {dayIndex}
                       </Styled.Day>
