@@ -1,8 +1,6 @@
 import styled, { keyframes } from "styled-components";
 import Image from "next/image";
 
-import Sun from "../public/Sun.svg";
-
 const rotate = keyframes`
     from {
         transform: rotate(0deg);
@@ -22,7 +20,7 @@ const Loader = styled(Image)`
 export default function Loading() {
   return (
     <div className="flex flex-col flex-1 justify-center items-center">
-      <Loader src={Sun} alt="Sun" width={100} height={100} />
+      <Loader src="/Sun.svg" alt="Sun" width={100} height={100} />
     </div>
   );
 }

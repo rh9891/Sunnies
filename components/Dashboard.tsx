@@ -6,7 +6,7 @@ import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 import { Statuses, UserData } from "@/types";
 import { useAuth } from "@/context/AuthContext";
 import { atmaSans } from "@/fonts";
-import Calendar from "@/components/Calendar/index";
+import Calendar from "@/components/Calendar";
 import Loading from "@/components/Loading";
 import Login from "@/components/Login";
 

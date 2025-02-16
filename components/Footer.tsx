@@ -5,7 +5,7 @@ type FooterProps = {
 export default function Footer({ className }: FooterProps) {
   return (
     <footer className={className}>
-      <img src="Sydney.png" alt="Sydney, Australia cityscape" />
+      <img src="/Sydney.png" alt="Sydney, Australia cityscape" />
     </footer>
   );
 }
