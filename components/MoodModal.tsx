@@ -7,6 +7,11 @@ import { atmaSans } from "@/fonts";
 
 type MoodModalProps = {
   date: string;
+  existingData?: {
+    mood: string | null;
+    symptoms: string[];
+    notes: string;
+  };
   onCloseAction: () => void;
   onSetMood?: (
     date: string,
@@ -18,14 +23,19 @@ type MoodModalProps = {
 
 export default function MoodModal({
   date,
+  existingData,
   onCloseAction,
   onSetMood,
 }: MoodModalProps) {
   const [open, setOpen] = useState(true);
   const [step, setStep] = useState(1);
-  const [selectedMood, setSelectedMood] = useState<string | null>(null);
-  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>([]);
-  const [notes, setNotes] = useState("");
+  const [selectedMood, setSelectedMood] = useState<string | null>(
+    existingData?.mood || null,
+  );
+  const [selectedSymptoms, setSelectedSymptoms] = useState<string[]>(
+    existingData?.symptoms || [],
+  );
+  const [notes, setNotes] = useState(existingData?.notes || "");
   const formattedDate = new Date(date + "T00:00:00").toLocaleDateString(
     "en-US",
     {

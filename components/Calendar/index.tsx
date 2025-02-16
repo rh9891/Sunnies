@@ -3,14 +3,11 @@ import { MouseEvent, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 import { currentMonth, days, gradients, months, Months, now } from "@/utils";
+import { CalendarData } from "@/types";
 import { atmaSans } from "@/fonts";
 import MoodModal from "@/components/MoodModal";
 import Toast from "@/components/Toast";
 import * as Styled from "./Styles";
-
-type CalendarData = {
-  [date: string]: number;
-};
 
 type CalendarProps = {
   data: CalendarData;
@@ -149,7 +146,10 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
                         "0",
                       )}-${dayIndex.toString().padStart(2, "0")}`;
                     let isToday = dateKey === todayFormatted;
-                    const intensity = data[dateKey] ?? 0;
+                    const intensity =
+                      (data?.[dateKey]?.mood ? 1 : 0) +
+                      (data?.[dateKey]?.symptoms?.length || 0) +
+                      (data?.[dateKey]?.notes ? 1 : 0);
                     let color =
                       intensity > 0
                         ? gradients.yellow[
@@ -179,6 +179,7 @@ export default function Calendar({ data = {}, onSetMood }: CalendarProps) {
           {isModalOpen && selectedDate && (
             <MoodModal
               date={selectedDate}
+              existingData={data[selectedDate]}
               onCloseAction={handleClose}
               onSetMood={onSetMood}
             />

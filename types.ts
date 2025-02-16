@@ -23,3 +23,11 @@ export type UserData = {
     notes: string;
   };
 };
+
+export type CalendarData = {
+  [date: string]: {
+    mood: string | null;
+    symptoms: string[];
+    notes: string;
+  };
+};

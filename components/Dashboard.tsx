@@ -119,10 +119,20 @@ export default function Dashboard() {
 
   const calendarData = Object.keys(data).reduce(
     (acc, date) => {
-      acc[date] = data[date].symptoms.length;
+      acc[date] = {
+        mood: data[date].mood || null,
+        symptoms: data[date].symptoms || [],
+        notes: data[date].notes || "",
+      };
       return acc;
     },
-    {} as { [date: string]: number },
+    {} as {
+      [date: string]: {
+        mood: string | null;
+        symptoms: string[];
+        notes: string;
+      };
+    },
   );
 
   if (!currentUser && !loading) {
