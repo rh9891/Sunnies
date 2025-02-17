@@ -15,8 +15,9 @@ export default function Hero() {
         <span className="text-gradient">Sunnies</span>
       </h1>
       <p className="text-lg sm:text-xl md:text-2xl text-center w-full mx-auto max-w-[600px]">
-        Track your journey, share insights, and
-        <span className="font-semibold"> stay positive every day</span>.
+        Track your journey, explore insights, and
+        <span className="font-semibold">&nbsp;find hope in your every day</span>
+        .
       </p>
       <ButtonBar />
     </div>

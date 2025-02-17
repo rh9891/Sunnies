@@ -1,5 +1,6 @@
 import { ReactNode } from "react";
 import type { Metadata } from "next";
+import Head from "next/head";
 
 import { nunitoSans } from "@/fonts";
 import Header from "@/components/Header";
@@ -21,6 +22,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <AuthProvider>
+        <Head>
+          <title>Sunnies | Reflect, grow, and embrace brighter days</title>
+          <link rel="icon" href="/favicon.ico" sizes="any" />
+          <link
+            rel="icon"
+            href="/icon?<generated>"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+          <link
+            rel="apple-touch-icon"
+            href="/apple-icon?<generated>"
+            type="image/<generated>"
+            sizes="<generated>"
+          />
+        </Head>
         <body
           className={
             "w-full mx-auto text-sm sm:text-base min-h-screen flex flex-col text-slate-700 " +

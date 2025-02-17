@@ -7,13 +7,3 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
-.custom-effect {
-    background: #ffffff;
-    transition: background 2s, transform 0.3s ease;
-}
-
-.custom-effect:hover {
-    transform: translate(3px, 3px);
-    background: linear-gradient(180deg, #ffdb00, transparent) #ffc100;
-}
