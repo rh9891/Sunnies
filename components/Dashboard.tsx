@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { db } from "@/firebase";
 import { collection, doc, getDocs, setDoc } from "firebase/firestore";
 
@@ -8,11 +9,17 @@ import { useAuth } from "@/context/AuthContext";
 import { atmaSans } from "@/fonts";
 import Calendar from "@/components/Calendar";
 import Loading from "@/components/Loading";
-import Login from "@/components/Login";
 
 export default function Dashboard() {
   const [data, setData] = useState<UserData>({});
   const { currentUser, loading } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!loading && !currentUser) {
+      router.push("/login");
+    }
+  }, [currentUser, loading, router]);
 
   const calculateStreak = (dates: string[]): number => {
     if (!dates.length) return 0;
@@ -134,10 +141,6 @@ export default function Dashboard() {
       };
     },
   );
-
-  if (!currentUser && !loading) {
-    return <Login />;
-  }
 
   if (loading) {
     return <Loading />;

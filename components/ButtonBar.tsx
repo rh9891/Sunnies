@@ -19,10 +19,10 @@ export default function ButtonBar() {
 
   return (
     <div className="grid grid-cols-2 gap-4 w-fit mx-auto">
-      <Link href={"/dashboard"}>
+      <Link href={"/signup"}>
         <Button variant="light" text="Sign Up" />
       </Link>
-      <Link href={"/dashboard"}>
+      <Link href={"/login"}>
         <Button variant="dark" text="Log In" />
       </Link>
     </div>

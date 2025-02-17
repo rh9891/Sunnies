@@ -1,25 +1,20 @@
 "use client";
-import { ReactNode, useState } from "react";
-
-import { atmaSans, nunitoSans } from "@/fonts";
-import Button from "@/components/Button";
+import { useState } from "react";
 import { useAuth } from "@/context/AuthContext";
+import { useRouter } from "next/navigation";
+import Button from "@/components/Button";
+import { atmaSans, nunitoSans } from "@/fonts";
 
-type LoginProps = {
-  children?: ReactNode;
-  className?: string;
-};
-
-export default function Login({ className }: LoginProps) {
+export default function Signup() {
+  const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [isRegistering, setIsRegistering] = useState(false);
   const [authenticating, setAuthenticating] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const { signup, login } = useAuth();
+  const { signup } = useAuth();
 
-  const handleSubmit = async () => {
+  const handleSignup = async () => {
     if (!email || !password || password.length < 6) {
       setErrorMessage("Password must be at least 6 characters.");
       return;
@@ -27,13 +22,10 @@ export default function Login({ className }: LoginProps) {
     setAuthenticating(true);
     setErrorMessage("");
     try {
-      if (isRegistering) {
-        await signup(email, password);
-      } else {
-        await login(email, password);
-      }
+      await signup(email, password);
+      router.push("/dashboard");
     } catch (error: unknown) {
-      console.error("Error logging in:", error);
+      console.error("Error signing up:", error);
 
       if (error instanceof Error) {
         setErrorMessage(error.message);
@@ -46,13 +38,9 @@ export default function Login({ className }: LoginProps) {
   };
 
   return (
-    <div
-      className={
-        "flex flex-col flex-1 justify-center items-center gap-4 " + className
-      }
-    >
+    <div className="flex flex-col flex-1 justify-center items-center gap-4">
       <h3 className={"text-4xl sm:text-5xl md:text-6xl " + atmaSans.className}>
-        {isRegistering ? "Start Your Journey" : "Log In to Your Account"}
+        Start Your Journey
       </h3>
       <p className={nunitoSans.className}>
         You&#39;re one step away from a brighter life.
@@ -75,17 +63,15 @@ export default function Login({ className }: LoginProps) {
           text={authenticating ? "Submitting..." : "Submit"}
           variant="light"
           full
-          onClick={handleSubmit}
+          onClick={handleSignup}
         />
         <p className={nunitoSans.className + " text-center"}>
-          {isRegistering
-            ? "Already have an account? "
-            : "Don\'t have an account? "}
+          Already have an account?&nbsp;
           <button
-            onClick={() => setIsRegistering(!isRegistering)}
+            onClick={() => router.push("/login")}
             className="text-gradient"
           >
-            {isRegistering ? "Log In" : "Sign Up"}
+            Log In
           </button>
         </p>
       </div>

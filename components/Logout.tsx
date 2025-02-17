@@ -8,7 +8,12 @@ export default function Logout() {
   const { logout, currentUser } = useAuth();
   const pathname = usePathname();
 
-  if (!currentUser || pathname === "/") {
+  if (
+    !currentUser ||
+    pathname === "/" ||
+    pathname === "/signup" ||
+    pathname === "/login"
+  ) {
     return null;
   }
 
