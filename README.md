@@ -70,7 +70,8 @@ THEN their previous entries are still accessible, ensuring data persistence
 
 ## Preview of Sunnies
 
-![Sunnies Landing Page](https://github.com/user-attachments/assets/fb1107ce-5940-45d5-bfc6-6cdce41767a5)
+![Sunnies Landing Page](https://github.com/user-attachments/assets/538d7d02-d407-4aad-a752-5bfa71cb2745)
+
 
 The following animation demonstrates the complete application functionality:
 
