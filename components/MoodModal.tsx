@@ -116,7 +116,7 @@ export default function MoodModal({
                         }`}
                       >
                         <img
-                          src={`Moods/${mood.icon}.png`}
+                          src={`/Moods/${mood.icon}.png`}
                           alt={mood.label}
                           className="w-16 h-16 object-cover mb-2"
                         />
@@ -159,7 +159,7 @@ export default function MoodModal({
                         }`}
                       >
                         <img
-                          src={`Symptoms/${symptom.icon}.png`}
+                          src={`/Symptoms/${symptom.icon}.png`}
                           alt={symptom.label}
                           className="w-16 h-16 object-cover mb-2"
                         />
