@@ -66,6 +66,7 @@ AND a confirmation message appears before editing past entries
 GIVEN a user logs an entry
 WHEN they revisit the app on a different device
 THEN their previous entries are still accessible, ensuring data persistence
+```
 
 ## Preview of Sunnies
 
@@ -77,7 +78,7 @@ The following animation demonstrates the complete application functionality:
 
 ## Links
 
-1. [Deployed Application](https://sunniestdays.netlify.app)
+1. [Deployed Application](https://sunniest-days.netlify.app)
 
 2. [Github Repository](https://github.com/rh9891/Sunnies)
 
@@ -86,15 +87,11 @@ The following animation demonstrates the complete application functionality:
 Run the application locally with these steps:
 
 ```
-
 $ npm install
-
 ```
 
 ```
-
 $ npm run dev
-
 ```
 
 ## Built Using
@@ -128,4 +125,3 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
 COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
 OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-```
