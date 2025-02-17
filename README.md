@@ -75,7 +75,8 @@ THEN their previous entries are still accessible, ensuring data persistence
 
 The following animation demonstrates the complete application functionality:
 
-![Sunnies Functionality]()
+![Sunnies Functionality](https://github.com/user-attachments/assets/7447586c-ba2b-4d93-8263-c44544193043)
+
 
 ## Links
 
