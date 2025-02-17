@@ -62,7 +62,7 @@ export default function Login() {
           onClick={handleLogin}
         />
         <p className={nunitoSans.className + " text-center"}>
-          Don't have an account?&nbsp;
+          Don&#39;t have an account?&nbsp;
           <button
             onClick={() => router.push("/signup")}
             className="text-gradient"
