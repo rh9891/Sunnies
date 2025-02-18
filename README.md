@@ -4,6 +4,7 @@
 [![Vite](https://img.shields.io/badge/Vite-4.0.0-yellow.svg)](https://vitejs.dev/)
 [![Next.js](https://img.shields.io/badge/Next.js-14.0.0-black.svg)](https://nextjs.org/)
 [![Firebase](https://img.shields.io/badge/Firebase-9.0.0-orange.svg)](https://firebase.google.com/)
+[![Chart.js](https://img.shields.io/badge/Chart.js-4.4.0-red.svg)](https://www.chartjs.org/)
 [![Headless UI](https://img.shields.io/badge/Headless%20UI-1.7.14-purple.svg)](https://headlessui.com/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.3.2-blueviolet.svg)](https://tailwindcss.com/)
 [![Styled Components](https://img.shields.io/badge/Styled%20Components-5.3.6-pink.svg)](https://styled-components.com/)
@@ -26,6 +27,16 @@
 Sunnies is a beautifully designed symptom and mood tracking app built with React, Vite, Next.js, and Firebase to help
 users gain insight into their well-being. By allowing users to log their daily moods, symptoms, and personal notes,
 Sunnies helps visualize patterns over time and empowers individuals to take charge of their mental and physical health.
+
+Sunnies provides interactive charts powered by Chart.js, allowing users to track their mood and symptom trends over
+time. These visualizations, which help users recognize correlations, detect patterns, and gain deeper insights into
+their well-being, include:
+
+- **Mood Frequency Chart**: A pie chart displaying how often each mood has been logged.
+
+- **Symptom Frequency Chart**: A bar chart tracking symptom occurrences.
+
+- **Mood and Symptom Correlation Chart**: A stacked bar chart showing relationships between moods and symptoms.
 
 ## User Story
 
@@ -55,7 +66,7 @@ WHEN they click the "Logout" button in the dashboard
 THEN they are securely logged out
 
 GIVEN a user is on the dashboard
-WHEN they select a day and add mood, symptoms, and notes
+WHEN they select a day, add mood, symptoms, and notes, and click "Save"
 THEN the entry is saved in the database
 
 GIVEN a user has already logged an entry on a past date
@@ -66,17 +77,20 @@ AND a confirmation message appears before editing past entries
 GIVEN a user logs an entry
 WHEN they revisit the app on a different device
 THEN their previous entries are still accessible, ensuring data persistence
+
+GIVEN a user clicks on the View Insights button
+WHEN they navigate to the Insights modal
+THEN they are presented with mood and symptom frequency charts
+AND can analyze patterns in their emotional and physical health
 ```
 
 ## Preview of Sunnies
 
 ![Sunnies Landing Page](https://github.com/user-attachments/assets/538d7d02-d407-4aad-a752-5bfa71cb2745)
 
-
 The following animation demonstrates the complete application functionality:
 
 ![Sunnies Functionality](https://github.com/user-attachments/assets/7447586c-ba2b-4d93-8263-c44544193043)
-
 
 ## Links
 
