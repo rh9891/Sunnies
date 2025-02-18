@@ -17,7 +17,7 @@ export default function Login() {
 
   const { login, currentUser, loading } = useAuth();
 
-  if (currentUser) {
+  if (currentUser && !loading && !authenticating) {
     return (
       <div className="flex flex-col flex-1 justify-center items-center gap-4">
         <h3
@@ -37,7 +37,7 @@ export default function Login() {
     );
   }
 
-  if (loading) {
+  if (loading || authenticating) {
     return <Loading />;
   }
 
@@ -55,7 +55,6 @@ export default function Login() {
       } else {
         setErrorMessage("An unexpected error occurred. Please try again.");
       }
-    } finally {
       setAuthenticating(false);
     }
   };

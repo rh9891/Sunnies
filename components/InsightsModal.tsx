@@ -65,7 +65,7 @@ export default function InsightsModal({ onCloseAction }: InsightsModalProps) {
       labels: Object.keys(moodCounts),
       datasets: [
         {
-          label: " Frequency",
+          label: "Frequency",
           data: Object.values(moodCounts),
           backgroundColor: [
             "#FF6384",
@@ -102,7 +102,7 @@ export default function InsightsModal({ onCloseAction }: InsightsModalProps) {
       ),
       datasets: [
         {
-          label: " Frequency",
+          label: "Frequency",
           data: Object.values(symptomCounts),
           backgroundColor: "#FEAE65",
           borderColor: "#FEE12B",

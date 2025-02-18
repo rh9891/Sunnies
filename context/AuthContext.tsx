@@ -66,7 +66,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
         setLoading(true);
         setCurrentUser(user);
         if (!user) {
-          console.log("No user found.");
           return;
         }
 
@@ -75,7 +74,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
         let firebaseData = {};
         if (docSnap.exists()) {
-          console.log("Found user data in firebase.");
           firebaseData = docSnap.data();
         }
         setUserDataObject(firebaseData);

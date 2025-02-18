@@ -1,11 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import Button from "@/components/Button";
-import { atmaSans, nunitoSans } from "@/fonts";
-import Loading from "@/components/Loading";
 import Link from "next/link";
+
+import { atmaSans, nunitoSans } from "@/fonts";
+import { useAuth } from "@/context/AuthContext";
+import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 
 export default function Signup() {
   const router = useRouter();
@@ -16,7 +17,7 @@ export default function Signup() {
 
   const { signup, currentUser, loading } = useAuth();
 
-  if (currentUser) {
+  if (currentUser && !loading && !authenticating) {
     return (
       <div className="flex flex-col flex-1 justify-center items-center gap-4">
         <h3
@@ -36,7 +37,7 @@ export default function Signup() {
     );
   }
 
-  if (loading) {
+  if (loading || authenticating) {
     return <Loading />;
   }
 
@@ -58,7 +59,6 @@ export default function Signup() {
       } else {
         setErrorMessage("An unexpected error occurred. Please try again.");
       }
-    } finally {
       setAuthenticating(false);
     }
   };

@@ -8,7 +8,7 @@ import Loading from "@/components/Loading";
 export default function ButtonBar() {
   const { currentUser, loading } = useAuth();
 
-  if (currentUser) {
+  if (currentUser && !loading) {
     return (
       <div className="flex justify-center max-w-[600px] mx-auto w-full">
         <Link href={"/dashboard"}>
