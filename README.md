@@ -118,6 +118,7 @@ This project was built using the following technologies:
 - [Vite](https://vitejs.dev/)
 - [Next.js](https://nextjs.org/)
 - [Firebase](https://firebase.google.com/)
+- [Chart.js](https://www.chartjs.org/)
 - [Headless UI](https://headlessui.com/)
 - [Tailwind CSS](https://tailwindcss.com/)
 - [Styled Components](https://styled-components.com/)
