@@ -3,9 +3,10 @@ import Link from "next/link";
 
 import { useAuth } from "@/context/AuthContext";
 import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 
 export default function ButtonBar() {
-  const { currentUser } = useAuth();
+  const { currentUser, loading } = useAuth();
 
   if (currentUser) {
     return (
@@ -15,6 +16,10 @@ export default function ButtonBar() {
         </Link>
       </div>
     );
+  }
+
+  if (loading) {
+    return <Loading />;
   }
 
   return (

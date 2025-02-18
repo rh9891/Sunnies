@@ -1,9 +1,12 @@
 "use client";
 import { useState } from "react";
-import { useAuth } from "@/context/AuthContext";
 import { useRouter } from "next/navigation";
-import Button from "@/components/Button";
+import Link from "next/link";
+
 import { atmaSans, nunitoSans } from "@/fonts";
+import { useAuth } from "@/context/AuthContext";
+import Button from "@/components/Button";
+import Loading from "@/components/Loading";
 
 export default function Login() {
   const router = useRouter();
@@ -12,7 +15,31 @@ export default function Login() {
   const [authenticating, setAuthenticating] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string>("");
 
-  const { login } = useAuth();
+  const { login, currentUser, loading } = useAuth();
+
+  if (currentUser) {
+    return (
+      <div className="flex flex-col flex-1 justify-center items-center gap-4">
+        <h3
+          className={"text-4xl sm:text-5xl md:text-6xl " + atmaSans.className}
+        >
+          Continue Your Journey
+        </h3>
+        <p className={nunitoSans.className}>
+          You&#39;re one step away from a brighter life.
+        </p>
+        <div className="flex justify-center max-w-[400px] w-full">
+          <Link href={"/dashboard"}>
+            <Button text="Go to Dashboard" variant="dark" />
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  if (loading) {
+    return <Loading />;
+  }
 
   const handleLogin = async () => {
     setAuthenticating(true);
