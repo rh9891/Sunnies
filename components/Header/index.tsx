@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { atmaSans } from "@/fonts";
+import ViewInsights from "@/components/ViewInsights";
 import Logout from "../Logout";
 import * as Styled from "./Styles";
 
@@ -20,7 +21,10 @@ export default function Header() {
           Sunnies
         </h1>
       </Link>
-      <Logout />
+      <div className="flex gap-4">
+        <ViewInsights />
+        <Logout />
+      </div>
     </Styled.Header>
   );
 }

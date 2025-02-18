@@ -1,3 +1,24 @@
+import {
+  ArcElement,
+  BarElement,
+  CategoryScale,
+  Chart as ChartJS,
+  Legend,
+  LinearScale,
+  LineElement,
+  Tooltip,
+} from "chart.js";
+
+ChartJS.register(
+  ArcElement,
+  Tooltip,
+  Legend,
+  CategoryScale,
+  LinearScale,
+  BarElement,
+  LineElement,
+);
+
 export const gradients = {
   yellow: [
     "#FFFFB7",
@@ -41,3 +62,19 @@ export const days = [
   "Saturday",
   "Sunday",
 ];
+
+export const getColorForMood = (mood: string) => {
+  const moodColors: Record<string, string> = {
+    Angry: "#FF6384",
+    Calm: "#F66D44",
+    Excited: "#FEAE65",
+    Happy: "#FEE12B",
+    Grateful: "#E6F69D",
+    Motivated: "#AADEA7",
+    Neutral: "#64C2A6",
+    Overwhelmed: "#2D87BB",
+    Sad: "#66D3FA",
+    Scared: "#AC64AD",
+  };
+  return moodColors[mood] || "#C9CBCE";
+};

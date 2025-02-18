@@ -6,7 +6,7 @@ export const symptoms: Record<string, Symptom> = {
     icon: "AbdominalPain",
     value: "Abdominal Pain",
   },
-  Anxiety: { label: "Anxiety", icon: "Anxiety", value: "anxiety_02" },
+  Anxiety: { label: "Anxiety", icon: "Anxiety", value: "Anxiety" },
   "Chest Pain": {
     label: "Chest Pain",
     icon: "ChestPain",
