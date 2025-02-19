@@ -90,7 +90,8 @@ AND can analyze patterns in their emotional and physical health
 
 The following animation demonstrates the complete application functionality:
 
-![Sunnies Functionality](https://github.com/user-attachments/assets/7447586c-ba2b-4d93-8263-c44544193043)
+![SunniesFunctionality](https://github.com/user-attachments/assets/54fa3d1b-d9a1-4fd4-b452-88d25ae6d5a7)
+
 
 ## Links
 
